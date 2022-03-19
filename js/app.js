@@ -1,93 +1,145 @@
-//-----------------------------------From James_____________
-// Cards constants: 
-const suits = ['s', 'c', 'd', 'h'];
-const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
+// //-----------------------------------From James_____________
+// // Cards constants: 
+// const suits = ['s', 'c', 'd', 'h'];
+// const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
 
-// Build a 'master' deck of 'card' objects used to create shuffled decks
-const masterDeck = buildMasterDeck();
-renderDeckInContainer(masterDeck, document.getElementById('master-deck-container'));
-//----------------------------------End from James--------------------
+// // Build a 'master' deck of 'card' objects used to create shuffled decks
+// const masterDeck = buildMasterDeck();
+// renderDeckInContainer(masterDeck, document.getElementById('master-deck-container'));
+// //----------------------------------End from James--------------------
 
-// Variables
-let shuffledDeck; // Got this from James JS
-let dealerTotal;
-let dealerCard;
-let winLose;
-let playerCard;
-let playerTotal;
+// // Variables
+// let shuffledDeck; // Got this from James JS
+// let dealerTotal;
+// let dealerCard;
+// let winLose;
+// let playerCard;
+// let playerTotal;
 
-// Connect to HTML elments
-dealerTotalEl = document.querySelector('#dealerTotal');
-dealerCardEl = document.querySelector('#dealerCard');
-winLoseEl = document.querySelector('#winLose');
-playerCardEl = document.querySelector('#playerCard');
-playerTotalEl = document.querySelector('#playerTotal');
-dealerStaysEl = document.querySelector('#dealerstays');
+// // Connect to HTML elments
+// dealerTotalEl = document.querySelector('#dealerTotal');
+// dealerCardEl = document.querySelector('#dealerCard');
+// winLoseEl = document.querySelector('#winLose');
+// playerCardEl = document.querySelector('#playerCard');
+// playerTotalEl = document.querySelector('#playerTotal');
+// dealerStaysEl = document.querySelector('#dealerstays');
 
-// Connect to HTML button with EventListener
-const hitBtn = document.querySelector('#hit').addEventListener("click", hit);
-const standBtn = document.querySelector('#stand').addEventListener("click", stand);
-const restartBtn = document.querySelector('#restart').addEventListener("click", restart);
+// // Connect to HTML button with EventListener
+// const hitBtn = document.querySelector('#hit').addEventListener("click", hit);
+// const standBtn = document.querySelector('#stand').addEventListener("click", stand);
+// const restartBtn = document.querySelector('#restart').addEventListener("click", restart);
 
 
-//---------------Card Deck function from James---------------------------
+// //---------------Card Deck function from James---------------------------
 
-/*----- functions -----*/
-function getNewShuffledDeck() {
-    // Create a copy of the masterDeck (leave masterDeck untouched!)
-    const tempDeck = [...masterDeck];
-    const newShuffledDeck = [];
-    while (tempDeck.length) {
-      // Get a random index for a card still in the tempDeck
-      const rndIdx = Math.floor(Math.random() * tempDeck.length);
-      // Note the [0] after splice - this is because splice always returns an array and we just want the card object in that array
-      newShuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
-    }
-    return newShuffledDeck;
-    }
+// /*----- functions -----*/
+// function getNewShuffledDeck() {
+//     // Create a copy of the masterDeck (leave masterDeck untouched!)
+//     const tempDeck = [...masterDeck];
+//     const newShuffledDeck = [];
+//     while (tempDeck.length) {
+//       // Get a random index for a card still in the tempDeck
+//       const rndIdx = Math.floor(Math.random() * tempDeck.length);
+//       // Note the [0] after splice - this is because splice always returns an array and we just want the card object in that array
+//       newShuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
+//     }
+//     return newShuffledDeck;
+//     }
   
-function renderNewShuffledDeck() {
-    // Create a copy of the masterDeck (leave masterDeck untouched!)
-    shuffledDeck = getNewShuffledDeck();
-    renderDeckInContainer(shuffledDeck, shuffledContainer);
-    }
+// function renderNewShuffledDeck() {
+//     // Create a copy of the masterDeck (leave masterDeck untouched!)
+//     shuffledDeck = getNewShuffledDeck();
+//     renderDeckInContainer(shuffledDeck, shuffledContainer);
+//     }
   
-function renderDeckInContainer(deck, container) {
-    container.innerHTML = '';
-    // Let's build the cards as a string of HTML
-    let cardsHtml = '';
-    deck.forEach(function(card) {
-      cardsHtml += `<div class="card ${card.face}"></div>`;
-    });
-    // Or, use reduce to 'reduce' the array into a single thing - in this case a string of HTML markup 
-    // const cardsHtml = deck.reduce(function(html, card) {
-    //   return html + `<div class="card ${card.face}"></div>`;
-    // }, '');
-    container.innerHTML = cardsHtml;
-    }
+// function renderDeckInContainer(deck, container) {
+//     container.innerHTML = '';
+//     // Let's build the cards as a string of HTML
+//     let cardsHtml = '';
+//     deck.forEach(function(card) {
+//       cardsHtml += `<div class="card ${card.face}"></div>`;
+//     });
+//     // Or, use reduce to 'reduce' the array into a single thing - in this case a string of HTML markup 
+//     // const cardsHtml = deck.reduce(function(html, card) {
+//     //   return html + `<div class="card ${card.face}"></div>`;
+//     // }, '');
+//     container.innerHTML = cardsHtml;
+//     }
   
-function buildMasterDeck() {
-    const deck = [];
-    // Use nested forEach to generate card objects
-    suits.forEach(function(suit) {
-      ranks.forEach(function(rank) {
-        deck.push({
-          // The 'face' property maps to the library's CSS classes for cards
-          face: `${suit}${rank}`,
-          // Setting the 'value' property for game of blackjack, not war
-          value: Number(rank) || (rank === 'A' ? 11 : 10)
-        });
-      });
-    });
-    return deck;
-    }
+// function buildMasterDeck() {
+//     const deck = [];
+//     // Use nested forEach to generate card objects
+//     suits.forEach(function(suit) {
+//       ranks.forEach(function(rank) {
+//         deck.push({
+//           // The 'face' property maps to the library's CSS classes for cards
+//           face: `${suit}${rank}`,
+//           // Setting the 'value' property for game of blackjack, not war
+//           value: Number(rank) || (rank === 'A' ? 11 : 10)
+//         });
+//       });
+//     });
+//     return deck;
+//     }
   
-  renderNewShuffledDeck();
+//   renderNewShuffledDeck();
 
-  //---------------------End Card Deck function from James---------------------
+//   //---------------------End Card Deck function from James---------------------
 
 
 
+  //Learning about Black Jack coding right now
+  let firstCard = getRandomCard()
+  let secondCard = getRandomCard()
+  let sum = firstCard + secondCard
+  let hasBlackJack = false
+  let isAlive = true
+  let message = ""
+  let messageEl = document.getElementById("message-el")
+  let sumEl = document.getElementById("cards-el")
+  //store the cards paragraph in a variable called cardsEl
+  let cardsEl = document.getElementById("cards-el")
+
+function renderGame (){
+    //3.Render the cars on the page using this format ->"Cards: 10 4"
+  cardsEl.textContent = `Cards: ${firstCard}+${secondCard}`
+  sumEl.textContent = `Sum: ${sum}`
+  if (sum <= 20){
+    message = "Do you want to draw a new card?"
+  }else if (sum === 21){
+    message = "You've got Blackjack!"
+    basBlackJack = true
+  }else {
+    message = "You're out of the game!"
+    isAlive = false
+  }
+  messageEl.textContent = message
+}
+function getRandomCard(){
+  // if 1 -> return 11
+  // if 11-13->return to 10
+  let randomNumber = math.floor(math.random()*13) + 1
+  if(randomNumber > 10){
+    return 10
+  }else if (randomNumber +++1){
+    else{
+      return randomNumber
+    }
+  }
+}
+function startGame(){
+  renderGame()
+}
+function newCard(){
+  console.log(" Drawing a new card from the deck!")
+  //1. Create a card variable, and hard code its value to a number (2-11)
+  let card = getRandomCard()
+  //2. Add the new card to the sum variable
+  sum += card
+  card.push(card)
+  //3. Call startGame()
+  renderGame()
+}
 // Function of ACE equal to 1 or 11
 
 // Function of over 21 is Bursted
