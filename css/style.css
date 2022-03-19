@@ -24,7 +24,7 @@ h1 {
     color: azure;
 }
 
-#dealerHand{
+#dealerCard{
     background-color: green;
     padding: 100px;
     font-size: 20px;
@@ -45,7 +45,7 @@ h1 {
     color: azure;
 }
 
-#playerHand{
+#playerCard{
     background-color: green;
     padding: 100px;
     font-size: 20px;
@@ -55,9 +55,10 @@ li>button{
     text-align: center;
     margin-left: 200px;
     margin-top: 100px;
-    border-radius: 30%;
+    border-radius: 20%;
     border-color: rgb(81, 81, 196);
     border-width: 15px;
+
 
 }
 
