@@ -21,7 +21,6 @@ let playerCardEl;
 let playerTotalEl;
 
 
-
 // Connect to HTML elments
 dealerTotalEl = document.querySelector('#dealer-total');
 dealerCardEl = document.querySelector('#dealer-card');
@@ -29,17 +28,16 @@ winLoseEl = document.querySelector('#win-lose');
 playerCardEl = document.querySelector('#player-card');
 playerTotalEl = document.querySelector('#player-total');
 
-
 // Connect to HTML button with EventListener
 const hitBtn = document.querySelector('#hit').addEventListener("click", hit);
 const standBtn = document.querySelector('#stand').addEventListener("click", stand);
 const restartBtn = document.querySelector('#restart').addEventListener("click", restart);
 
-
 init();
 function init(e){
   buildMasterDeck();
   tempDeck = getNewShuffledDeck();
+  console.log(tempDeck)
   // Ace can be 1 or 11
   tempDeck.forEach(function(card){
     if (card.value ===1){
@@ -54,15 +52,46 @@ function init(e){
   
  //add first two cards to player
   playerCard.push(tempDeck[3], tempDeck[4]);
+
+ //add Dealer Card total amount
+
+//Player total count when add up two cards
+dealerTotal = dealerCardTotal();
+//Player total count when add up two cards
+playerTotal = playerCardTotal();
+
+
+
+  
+
   render();
 };
 
 // Render function updates the view
 function render () {
-  renderDeckInContainer(dealerCard, dealerCardEl)
-  renderDeckInContainer(playerCard, playerCardEl)
+  renderDeckInContainer(dealerCard, dealerCardEl, true)
+  renderDeckInContainer(playerCard, playerCardEl, false)
+  dealerTotalEl.textContent = `Dealer Total: ${dealerTotal}`;
+  playerTotalEl.textContent = `Player Total: ${playerTotal}`
+  
+};
+//Calculate dealer Card total by using loop function
+function dealerCardTotal(){
+  total = 0;
+  for (i = 0; i < dealerCard.length; i=i+1 ){
+    total = total + dealerCard[i].value;
+  }
+  return total;
 };
 
+// Calculate player Card total by using lopp function
+function playerCardTotal(){
+  total = 0;
+  for (i = 0; i < playerCard.length; i=i+1){
+    total = total + playerCard[i].value;
+  }
+  return total;
+};
 
 
 
@@ -84,10 +113,11 @@ function getNewShuffledDeck() {
   return newShuffledDeck;
 }
 
-function renderDeckInContainer(deck, container) {
+function renderDeckInContainer(deck, container, isDealer) {
   container.innerHTML = '';
   // Let's build the cards as a string of HTML
   let cardsHtml = '';
+  let dealerAmount = 0;
   deck.forEach(function(card) {
     cardsHtml += `<div class="card ${card.face}"></div>`;
   });
@@ -114,8 +144,3 @@ function buildMasterDeck() {
   return deck;
 }
 //End Card Deck function from James
-
-
-
-
-
