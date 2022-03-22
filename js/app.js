@@ -144,3 +144,82 @@ function buildMasterDeck() {
   return deck;
 }
 //End Card Deck function from James
+
+//Function that calculate cards on the board
+function getCardsOnBoard(){
+  return playerCard.length + dealerCard.length
+};
+
+//Function that add card to player
+function hit(){
+  //add card to player hand
+  playerCard.push(tempDeck[getCardsOnBoard()]);
+  //calculate playerTotal
+  playerTotal = playerCardTotal();
+  while (playerTotal > 21 && playerCard.some(card => card.value === 11)){
+    playerCard.forEach(function(card){
+      if(card.value === 11){
+        card.value = 1;
+        playerTotal = playerCardTotal();
+        console.log(playerTotal, card.value);
+      }
+      if (playerTotal <= 21) return;
+    });
+  };
+  if (playerTotal > 21){
+    winner = 'computer- player busts'
+  };
+  render ();
+  };
+
+
+
+  //Function allow player to stand without drawing another card to end the turn and move to dealer turn.
+function stand() {
+  console.log('stay button test')
+  // call dealerTurn()
+  dealerTurn();
+  // calculate playerTotal
+  playerTotal = playerCardTotal();
+  // if winner= null and playerTotal > dealerTotal, update winner to 'player
+  if (winner === null && playerTotal > dealerTotal) {
+      winner = 'player'
+  } else if (winner === null && playerTotal === dealerTotal) {
+      winner = 'tie'
+  } else if (winner === null && playerTotal < dealerTotal) {
+      winner = 'computer'
+  }
+  // call render()
+  render();
+};
+
+
+//Function that adds cards to dealer hand if applicable, updates winner if applicable
+function dealerTurn () {
+  //while dealer total <17 add card to dealerHand
+  while (dealerTotal < 17) {
+      dealerCard.push(tempDeck[getCardsOnBoard()]);
+      dealerTotal = dealerCardTotal();
+  };
+  //calculate dealerTotal
+  dealerTotal = dealerCardTotal();
+  //If aces are present, their value will be reduced until dealerTotal < 21
+  while (dealerTotal > 21 && dealerCard.some(card => card.value === 11)){
+  
+      dealerCard.forEach(function(card){
+          if (card.value === 11){
+              card.value = 1;
+              dealerTotal = dealerCardCTotal();
+              console.log(dealerTotal, card.value);
+          }
+          if (playerTotal <= 21) return;
+      });
+      console.log(dealerTotal);
+  //IF dealerTotal > 21 update winner to 'player' after reducing ace values 
+
+  };
+  if (dealerTotal > 21) {
+      winner = 'player- dealer busts'
+  };
+  render ();
+};
