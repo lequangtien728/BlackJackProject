@@ -13,3 +13,4 @@ A is count as 11 or 1
 
 At the beginning of the game, the player and dealer will receive two cards. The player cards will face up. For the computer cards, one card is face down and one is face up. To beat the computer
 
+dfsafgasfwead
