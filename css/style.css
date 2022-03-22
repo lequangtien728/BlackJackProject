@@ -17,20 +17,21 @@ h1 {
     color: darkblue;
 }
 
-#dealerTotal{
+#dealer-total{
     background-color: red;
     text-align: center;
     font-size: 20px;
     color: azure;
 }
 
-#dealerCard{
+#dealer-card{
     background-color: green;
     padding: 100px;
     font-size: 20px;
+    text-align: center;
 }
 
-#winLose{
+#win-lose{
     background-color: rgb(65, 65, 167);
     font-size: 50px;
     text-align: center;
@@ -38,26 +39,25 @@ h1 {
   
 }
 
-#playerTotal{
+#player-total{
     background-color: red;
     text-align: center;
     font-size: 20px;
     color: azure;
 }
 
-#playerCard{
+#player-card{
     background-color: green;
     padding: 100px;
     font-size: 20px;
+    text-align: center;
 }
 li>button{
     font-size: 50px;
     text-align: center;
-    margin-left: 200px;
-    margin-top: 100px;
     border-radius: 20%;
     border-color: rgb(81, 81, 196);
-    border-width: 15px;
+   
 
 
 }
