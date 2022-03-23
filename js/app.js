@@ -168,12 +168,15 @@ function hit(){
   
   //calculate playerTotal
   playerTotal = playerCardTotal();
-
+  
+  if (playerTotal === 21){
+    winner = 'player'
+  }
   if (playerTotal > 21){
     winner = 'dealer'
+    hitButtonDisable();
   }
-
-  hitButtonDisable();
+  
   render ();
   
   // //add Disable button for Hit
