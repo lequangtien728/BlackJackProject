@@ -222,7 +222,7 @@ function dealerTurn () {
 function restart(){
   init();
   hitButtonEnable()
-  
+  standButtonEnable()
 }
 
 //add Disable button for Hit
@@ -233,5 +233,12 @@ function hitButtonDisable(){
 function hitButtonEnable(){
   document.getElementById("hit").disabled = false;
 }
-
+//add Disable button for Stand
+function standButtonDisable(){
+  document.getElementById("stand").disabled = true;
+}
+//add Enable button for Stand
+function standButtonEnable(){
+  document.getElementById("stand").disabled = false;
+}
 
