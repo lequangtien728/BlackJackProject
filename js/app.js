@@ -34,7 +34,7 @@ const standBtn = document.querySelector('#stand').addEventListener("click", stan
 const restartBtn = document.querySelector('#restart').addEventListener("click", restart);
 
 init();
-function init(e){
+function init(){
   buildMasterDeck();
   tempDeck = getNewShuffledDeck();
   console.log(tempDeck)
@@ -44,7 +44,7 @@ function init(e){
       card.value = 11;
     }
   });
-
+  winner = null;
   dealerCard = [];
   playerCard = [];
   //add first two cards to dealer
@@ -53,17 +53,13 @@ function init(e){
  //add first two cards to player
   playerCard.push(tempDeck[3], tempDeck[4]);
 
- //add Dealer Card total amount
-
-//Player total count when add up two cards
+//Dealer total count when add up two cards
 dealerTotal = dealerCardTotal();
 //Player total count when add up two cards
 playerTotal = playerCardTotal();
-
-
+console.log(dealerTotal,playerTotal)
 
   
-
   render();
 };
 
@@ -72,8 +68,22 @@ function render () {
   renderDeckInContainer(dealerCard, dealerCardEl, true)
   renderDeckInContainer(playerCard, playerCardEl, false)
   dealerTotalEl.textContent = `Dealer Total: ${dealerTotal}`;
-  playerTotalEl.textContent = `Player Total: ${playerTotal}`
-  
+  playerTotalEl.textContent = `Player Total: ${playerTotal}` 
+
+  console.log(dealerTotal)
+  console.log(playerTotal)
+// View game message on the browser
+  if (winner === 'dealer'){
+  winLoseEl.textContent = "Dealer WIN!"
+ }else if (winner === 'player'){
+  winLoseEl.textContent = "Player WIN!"
+ }else if (winner === 'tie'){
+  winLoseEl.textContent = "It's a tie"
+ }else{
+  winLoseEl.textContent=""
+  console.log('else')
+    };
+   console.log(winLoseEl.textContent) 
 };
 //Calculate dealer Card total by using loop function
 function dealerCardTotal(){
@@ -154,21 +164,14 @@ function getCardsOnBoard(){
 function hit(){
   //add card to player hand
   playerCard.push(tempDeck[getCardsOnBoard()]);
+  
   //calculate playerTotal
   playerTotal = playerCardTotal();
-  while (playerTotal > 21 && playerCard.some(card => card.value === 11)){
-    playerCard.forEach(function(card){
-      if(card.value === 11){
-        card.value = 1;
-        playerTotal = playerCardTotal();
-        console.log(playerTotal, card.value);
-      }
-      if (playerTotal <= 21) return;
-    });
-  };
+
   if (playerTotal > 21){
-    winner = 'computer- player busts'
-  };
+    winner = 'dealer'
+  }
+  
   render ();
   };
 
@@ -176,50 +179,39 @@ function hit(){
 
   //Function allow player to stand without drawing another card to end the turn and move to dealer turn.
 function stand() {
-  console.log('stay button test')
   // call dealerTurn()
   dealerTurn();
   // calculate playerTotal
   playerTotal = playerCardTotal();
-  // if winner= null and playerTotal > dealerTotal, update winner to 'player
-  if (winner === null && playerTotal > dealerTotal) {
-      winner = 'player'
-  } else if (winner === null && playerTotal === dealerTotal) {
-      winner = 'tie'
-  } else if (winner === null && playerTotal < dealerTotal) {
-      winner = 'computer'
-  }
-  // call render()
+  
+
   render();
 };
 
 
 //Function that adds cards to dealer hand if applicable, updates winner if applicable
 function dealerTurn () {
-  //while dealer total <17 add card to dealerHand
-  while (dealerTotal < 17) {
+  //while dealer total <16 add card to dealerHand
+  while (dealerTotal < 16) {
       dealerCard.push(tempDeck[getCardsOnBoard()]);
       dealerTotal = dealerCardTotal();
   };
   //calculate dealerTotal
   dealerTotal = dealerCardTotal();
-  //If aces are present, their value will be reduced until dealerTotal < 21
-  while (dealerTotal > 21 && dealerCard.some(card => card.value === 11)){
-  
-      dealerCard.forEach(function(card){
-          if (card.value === 11){
-              card.value = 1;
-              dealerTotal = dealerCardCTotal();
-              console.log(dealerTotal, card.value);
-          }
-          if (playerTotal <= 21) return;
-      });
-      console.log(dealerTotal);
-  //IF dealerTotal > 21 update winner to 'player' after reducing ace values 
+  if (dealerTotal === playerTotal){
+    winner = 'tie'
+  }
+  else if (dealerTotal > 21) {
+      winner = 'player'
+  }
+  else if (playerTotal < dealerTotal){
+    winner = 'dealer'
+  }
 
-  };
-  if (dealerTotal > 21) {
-      winner = 'player- dealer busts'
-  };
   render ();
 };
+
+function restart(){
+  init();
+  
+}
