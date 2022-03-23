@@ -59,6 +59,7 @@ dealerTotal = dealerCardTotal();
 playerTotal = playerCardTotal();
 console.log(dealerTotal,playerTotal)
 
+
   
   render();
 };
@@ -171,10 +172,18 @@ function hit(){
   if (playerTotal > 21){
     winner = 'dealer'
   }
-  
-  render ();
-  };
 
+  hitButtonDisable();
+  render ();
+  
+  // //add Disable button for Hit
+  // function hitBtn(){
+  //   if (playerTotal >21){
+  //   document.getElementById("hit").disabled = true;
+  // }
+  // console.log(hitBtn)
+
+  };
 
 
   //Function allow player to stand without drawing another card to end the turn and move to dealer turn.
@@ -183,7 +192,6 @@ function stand() {
   dealerTurn();
   // calculate playerTotal
   playerTotal = playerCardTotal();
-  
 
   render();
 };
@@ -213,5 +221,17 @@ function dealerTurn () {
 
 function restart(){
   init();
+  hitButtonEnable()
   
 }
+
+//add Disable button for Hit
+function hitButtonDisable(){
+  document.getElementById("hit").disabled = true;
+}
+//add Enable button for Hit
+function hitButtonEnable(){
+  document.getElementById("hit").disabled = false;
+}
+
+
