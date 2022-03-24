@@ -29,7 +29,7 @@ Stand- player stay and dealer turn.
 
 Restart- to restart the game.
 
-**Next Steps:** Add audio and create a game with dealer card face down.
+**Next Steps:** Add audio and Bet function
 
 
 
