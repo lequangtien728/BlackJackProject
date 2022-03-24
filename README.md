@@ -21,7 +21,7 @@ A is count as 11 or 1
 
 **Technologies Used:** HTML, CSS, and Javascript
 
-Getting Started: link
+Getting Started: https://lequangtien728.github.io/BlackJackProject/
 Hit-add more card to player without going over 21.
 Stand- player stay and dealer turn.
 Restart- to restart the game.
