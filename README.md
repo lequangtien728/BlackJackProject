@@ -1,4 +1,4 @@
-Title: Welcome to FACE UP BLACKJACK!
+**Title:** Welcome to FACE UP BLACKJACK!
 
 Description:
 BlackJack face up game. The player and dealer both get two face cards. The dealer has to stay on 16 or higher when first two cards are deal. The player is able to get more card if the total count is less 21. The purpose of the game is to beat the dealer without going over 21. 
@@ -10,7 +10,7 @@ Card Number example:
 J,Q,K are count as 10
 A is count as 11 or 1
 
-Screenshots:
+**Screenshots:**
 
 ![Screen Shot 2022-03-24 at 1 27 48 PM](https://user-images.githubusercontent.com/100500958/159975507-5e54cd77-99c5-4d57-a347-2a0e68c1baa3.png)
 
@@ -19,14 +19,14 @@ Screenshots:
 
 
 
-Technologies Used: HTML, CSS, and Javascript
+**Technologies Used:** HTML, CSS, and Javascript
 
 Getting Started: link
 Hit-add more card to player without going over 21.
 Stand- player stay and dealer turn.
 Restart- to restart the game.
 
-Next Steps: Add audio and create a game with dealer card face down.
+**Next Steps:** Add audio and create a game with dealer card face down.
 
 
 
