@@ -12,7 +12,9 @@ A is count as 11 or 1
 
 Screenshots:
 
+![Screen Shot 2022-03-24 at 1 27 48 PM](https://user-images.githubusercontent.com/100500958/159975507-5e54cd77-99c5-4d57-a347-2a0e68c1baa3.png)
 
+![Screen Shot 2022-03-24 at 1 28 13 PM](https://user-images.githubusercontent.com/100500958/159975574-bf231d22-6bcf-4578-926e-046361faa3c6.png)
 
 
 
