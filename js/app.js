@@ -14,12 +14,6 @@ let dealerCard;
 let winner;
 let playerCard;
 let playerTotal;
-let dealerTotalEl;
-let dealerCardEl;
-let winLoseEl;
-let playerCardEl;
-let playerTotalEl;
-
 
 // Connect to HTML elments
 dealerTotalEl = document.querySelector('#dealer-total');
@@ -54,11 +48,10 @@ function init(){
   playerCard.push(tempDeck[3], tempDeck[4]);
 
 //Dealer total count when add up two cards
-dealerTotal = dealerCardTotal();
+  dealerTotal = dealerCardTotal();
 //Player total count when add up two cards
-playerTotal = playerCardTotal();
-console.log(dealerTotal,playerTotal)
-
+  playerTotal = playerCardTotal();
+  console.log(dealerTotal,playerTotal)
 
   
   render();
@@ -73,6 +66,14 @@ function render () {
 
   console.log(dealerTotal)
   console.log(playerTotal)
+//In case the player get 21 for the first two cards: player win
+  if (playerTotal === 21){
+    winner = 'player'
+  }
+//In case the player get 21 for the first two cards: player win
+  if (dealerTotal === 21){
+    winner = 'dealer'
+  }
 // View game message on the browser
   if (winner === 'dealer'){
   winLoseEl.textContent = "Dealer WIN!"
@@ -85,6 +86,7 @@ function render () {
   console.log('else')
     };
    console.log(winLoseEl.textContent) 
+   
 };
 //Calculate dealer Card total by using loop function
 function dealerCardTotal(){
@@ -103,8 +105,6 @@ function playerCardTotal(){
   }
   return total;
 };
-
-
 
 
 //Card Deck function from James
@@ -165,43 +165,26 @@ function getCardsOnBoard(){
 function hit(){
   //add card to player hand
   playerCard.push(tempDeck[getCardsOnBoard()]);
-  
   //calculate playerTotal
   playerTotal = playerCardTotal();
+  //disable hit button when the player is over 21 so the player would not draw more card
   
-  if (playerTotal === 21){
-    winner = 'player'
-  }
   if (playerTotal > 21){
     winner = 'dealer'
     hitButtonDisable();
   }
   
   render ();
-  
-  // //add Disable button for Hit
-  // function hitBtn(){
-  //   if (playerTotal >21){
-  //   document.getElementById("hit").disabled = true;
-  // }
-  // console.log(hitBtn)
-
   };
 
 
   //Function allow player to stand without drawing another card to end the turn and move to dealer turn.
 function stand() {
-  // call dealerTurn()
-  dealerTurn();
+  hitButtonDisable();
+  
   // calculate playerTotal
   playerTotal = playerCardTotal();
-
-  render();
-};
-
-
-//Function that adds cards to dealer hand if applicable, updates winner if applicable
-function dealerTurn () {
+  
   //while dealer total <16 add card to dealerHand
   while (dealerTotal < 16) {
       dealerCard.push(tempDeck[getCardsOnBoard()]);
@@ -209,19 +192,30 @@ function dealerTurn () {
   };
   //calculate dealerTotal
   dealerTotal = dealerCardTotal();
+  console.log(dealerTotal)
+  console.log(playerTotal)
+
+  standButtonDisable()
+  
+  if(dealerTotal < playerTotal){
+    winner = 'player'
+  }
+
   if (dealerTotal === playerTotal){
     winner = 'tie'
   }
   else if (dealerTotal > 21) {
-      winner = 'player'
+    winner = 'player'
   }
-  else if (playerTotal < dealerTotal){
+  else if (dealerTotal > playerTotal){
     winner = 'dealer'
-  }
+  } 
+  
 
-  render ();
+  render();
 };
 
+//function to restart the game
 function restart(){
   init();
   hitButtonEnable()
