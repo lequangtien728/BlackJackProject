@@ -5,15 +5,7 @@ const masterDeck = buildMasterDeck();
 
 let tempDeck = [...masterDeck];
 let shuffledDeck = getNewShuffledDeck();
-//----------------------------------End from James--------------------
 
-// Variables
-
-let dealerTotal;
-let dealerCard;
-let winner;
-let playerCard;
-let playerTotal;
 
 // Connect to HTML elments
 dealerTotalEl = document.querySelector('#dealer-total');
@@ -210,7 +202,6 @@ function stand() {
   else if (dealerTotal > playerTotal){
     winner = 'dealer'
   } 
-  
 
   render();
 };
